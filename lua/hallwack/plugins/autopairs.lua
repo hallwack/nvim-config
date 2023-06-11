@@ -1,5 +1,6 @@
 return {
   'windwp/nvim-autopairs',
+  event = 'VeryLazy',
   config = function()
     local ok_autopairs, autopairs = pcall(require, 'nvim-autopairs')
     local ok_cmp, cmp = pcall(require, 'cmp')
