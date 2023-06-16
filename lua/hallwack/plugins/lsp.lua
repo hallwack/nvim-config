@@ -48,7 +48,7 @@ return {
       }
     })
     masonlsp.setup({
-      ensure_installed = { "lua_ls", "tsserver", "tailwindcss", "prismals", "intelephense", "html", "cssls" }
+      ensure_installed = { "lua_ls", "tsserver", "tailwindcss", "prismals", "html", "cssls" }
     })
 
     local lsp = lspzero.preset({})
@@ -150,9 +150,6 @@ return {
       window = {
         completion = cmp.config.window.bordered(),
         documentation = cmp.config.window.bordered(),
-      },
-      view = {
-        entries = { name = 'custom', selection_order = 'near_cursor' }
       },
       mapping = cmp.mapping.preset.insert({
         ["<C-k>"] = cmp.mapping.select_prev_item(),
