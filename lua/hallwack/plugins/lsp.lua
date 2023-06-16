@@ -116,6 +116,13 @@ return {
       buf_set_keymap("n", "]e", "<cmd>Lspsaga diagnostic_jump_next<CR>", { noremap = true, silent = true })
     end)
 
+    lsp.set_sign_icons({
+      error = '✘',
+      warn = '▲',
+      hint = '⚑',
+      info = ' '
+    })
+
     lsp.skip_server_setup({ 'tsserver' })
     lspconfig.lua_ls.setup(lsp.nvim_lua_ls())
 
