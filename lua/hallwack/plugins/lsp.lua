@@ -1,7 +1,7 @@
 return {
 	"neovim/nvim-lspconfig",
-	cmd = 'LspInfo',
-	event = { 'BufReadPre', 'BufNewFile' },
+	cmd = "LspInfo",
+	event = { "BufReadPre", "BufNewFile" },
 	dependencies = {
 		"williamboman/mason.nvim",
 		"williamboman/mason-lspconfig.nvim",
@@ -22,16 +22,16 @@ return {
 		local ok_rust_tools, rust_tools = pcall(require, "rust-tools")
 
 		if
-				not (
-					ok_lspzero
-					and ok_lsp
-					and ok_mason
-					and ok_mason_lsp
-					and ok_null_ls
-					and ok_lspsaga
-					and ok_ts
-					and ok_rust_tools
-				)
+			not (
+				ok_lspzero
+				and ok_lsp
+				and ok_mason
+				and ok_mason_lsp
+				and ok_null_ls
+				and ok_lspsaga
+				and ok_ts
+				and ok_rust_tools
+			)
 		then
 			return
 		end
@@ -126,14 +126,31 @@ return {
 		})
 
 		lsp.skip_server_setup({ "tsserver" })
-		lspconfig.lua_ls.setup(lsp.nvim_lua_ls())
+		lspconfig.lua_ls.setup({
+			settings = {
+				Lua = {
+					diagnostics = {
+						globals = { "vim" },
+					},
+					workspace = {
+						library = {
+							[vim.fn.expand("$VIMRUNTIME/lua")] = true,
+							[vim.fn.expand("$VIMRUNTIME/lua/vim/lsp")] = true,
+							[vim.fn.stdpath("data") .. "/lazy/lazy.nvim/lua/lazy"] = true,
+						},
+						maxPreload = 100000,
+						preloadFileSize = 10000,
+					},
+				},
+			},
+		})
 		lspconfig.tailwindcss.setup({
 			settings = {
 				tailwindCSS = {
 					experimental = {
 						classRegex = {
 							{ "clsx\\(([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)" },
-							{ "cva\\(([^)]*)\\)",  "[\"'`]([^\"'`]*).*?[\"'`]" },
+							{ "cva\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]" },
 						},
 					},
 				},
