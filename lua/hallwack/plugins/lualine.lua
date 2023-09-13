@@ -1,17 +1,32 @@
 return {
 	"nvim-lualine/lualine.nvim",
-	event = "VeryLazy",
 	opts = function()
 		return {
 			options = {
 				icons_enabled = true,
 				theme = "auto",
 				component_separators = { left = "", right = "" },
-				section_separators = { left = "", right = "" },
+				section_separators = {
+					--[[ left = "", ]]
+					left = " ",
+					--[[ right = "", ]]
+					right = " ",
+				},
 				disabled_filetypes = { "alpha", "NvimTree", "Outline" },
 			},
 			sections = {
-				lualine_a = { { "mode", separator = { left = "", right = "" }, right_padding = 2 } },
+				lualine_a = {
+					{
+						"mode",
+						separator = {
+							--[[ left = "", ]]
+							left = " ",
+							--[[ right = "", ]]
+							right = " ",
+						},
+						right_padding = 2,
+					},
+				},
 				lualine_b = {
 					{
 						"filename",
@@ -67,7 +82,18 @@ return {
 					{ "filetype", colored = true },
 				},
 				lualine_y = { "progress" },
-				lualine_z = { { "location", separator = { left = "", right = "" }, left_padding = 0 } },
+				lualine_z = {
+					{
+						"location",
+						separator = {
+							--[[ left = "", ]]
+							left = " ",
+							--[[ right = "", ]]
+							right = " ",
+						},
+						left_padding = 0,
+					},
+				},
 			},
 			inactive_sections = {
 				lualine_a = {},
