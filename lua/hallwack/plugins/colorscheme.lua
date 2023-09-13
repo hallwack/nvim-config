@@ -31,14 +31,32 @@ return {
 				},
 			})
 
-			vim.cmd.colorscheme("catppuccin")
+			--[[ vim.cmd.colorscheme("catppuccin") ]]
 		end,
 	},
 	{
 		"rockyzhang24/arctic.nvim",
 		dependencies = { "rktjmp/lush.nvim" },
 		config = function()
-			-- vim.cmd("colorscheme arctic")
+			--[[ vim.cmd("colorscheme arctic") ]]
+		end,
+	},
+	{
+		"bluz71/vim-nightfly-colors",
+		name = "nightfly",
+		lazy = false,
+		config = function()
+			vim.g.nightflyTransparent = true
+			--[[ vim.cmd("colorscheme nightfly") ]]
+		end,
+	},
+	{
+		"bluz71/vim-moonfly-colors",
+		name = "moonfly",
+		lazy = false,
+		config = function()
+			vim.g.moonflyTransparent = true
+			vim.cmd("colorscheme moonfly")
 		end,
 	},
 }
