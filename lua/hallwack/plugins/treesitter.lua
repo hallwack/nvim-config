@@ -1,9 +1,10 @@
 return {
 	"nvim-treesitter/nvim-treesitter",
-	lazy = "VeryLazy",
-	build = function()
+	event = { "BufReadPre", "BufNewFile" },
+	build = ":TSUpdate",
+	--[[ build = function()
 		require("nvim-treesitter.install").update({ with_sync = true })
-	end,
+	end, ]]
 	dependencies = {
 		"windwp/nvim-ts-autotag",
 	},
