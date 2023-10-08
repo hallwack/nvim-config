@@ -17,10 +17,7 @@ return {
 			})
 		end,
 		config = function()
-			local ok_git, gitsigns = pcall(require, "gitsigns")
-			if not ok_git then
-				return
-			end
+			local gitsigns = require("gitsigns")
 
 			gitsigns.setup({})
 		end,

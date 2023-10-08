@@ -4,10 +4,7 @@ return {
 		name = "catppuccin",
 		priority = 1000,
 		config = function()
-			local ok_cat, cat = pcall(require, "catppuccin")
-			if not ok_cat then
-				return
-			end
+			local cat = require("catppuccin")
 
 			cat.setup({
 				flavour = "mocha", -- latte, frappe, macchiato, mocha

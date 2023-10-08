@@ -19,11 +19,8 @@ return {
 		},
 	},
 	config = function()
-		local ok_laravel, laravel = pcall(require, "laravel")
-		local ok_telescope, telescope = pcall(require, "telescope")
-		if not (ok_laravel and ok_telescope) then
-			return
-		end
+		local laravel = require("laravel")
+		local telescope = require("telescope")
 
 		laravel.setup({
 			lsp_server = "inteliphense",
