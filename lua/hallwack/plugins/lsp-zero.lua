@@ -1,8 +1,6 @@
 return {
 	"VonHeikemen/lsp-zero.nvim",
-	branch = "v2.x",
+	branch = "v3.x",
 	lazy = true,
-	config = function()
-		require("lsp-zero.settings").preset({})
-	end,
+	config = function() end,
 }
