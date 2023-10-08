@@ -30,21 +30,6 @@ return {
       ensure_installed = { "lua_ls", "tsserver", "tailwindcss", "prismals", "html", "cssls" },
       handlers = {
         default_setup,
-        -- tsserver = function()
-        --   lspconfig.tsserver.setup({
-        --     settings = {
-        --       filetypes = {
-        --         "typescript",
-        --         "javascript",
-        --         "javascriptreact",
-        --         "typescriptreact",
-        --         "typescript.tsx",
-        --         "javascript.jsx",
-        --       },
-        --       cmd = { "typescript-language-server", "--stdio" },
-        --     },
-        --   })
-        -- end,
         lua_ls = function()
           lspconfig.lua_ls.setup({
             settings = {
