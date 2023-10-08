@@ -63,7 +63,7 @@ return {
 			return
 		end
 
-		require("lsp-zero.cmp").extend()
+		local cmp_format = require("lsp-zero").cmp_format()
 
 		require("luasnip/loaders/from_vscode").lazy_load()
 
@@ -85,9 +85,9 @@ return {
 			},
 			mapping = cmp.mapping.preset.insert({
 				["<C-k>"] = cmp.mapping.select_prev_item(),
-				["<C-s>"] = cmp.mapping.select_prev_item(),
 				["<C-j>"] = cmp.mapping.select_next_item(),
-				["<C-d>"] = cmp.mapping.select_next_item(),
+				["<C-u>"] = cmp.mapping.scroll_docs(-4),
+				["<C-d>"] = cmp.mapping.scroll_docs(4),
 				["<C-b>"] = cmp.mapping.scroll_docs(-4),
 				["<C-f>"] = cmp.mapping.scroll_docs(4),
 				["<C-Space>"] = cmp.mapping.complete(),
@@ -134,6 +134,7 @@ return {
 				{ name = "path" },
 			}),
 			formatting = {
+				cmp_format,
 				format = lspkind.cmp_format({
 					with_text = true,
 					maxwidth = 100,
