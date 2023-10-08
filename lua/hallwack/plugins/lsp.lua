@@ -1,11 +1,13 @@
 return {
 	"neovim/nvim-lspconfig",
-	cmd = {"LspInfo", "Mason"},
+	cmd = { "LspInfo" },
 	event = { "BufReadPre", "BufNewFile" },
 	dependencies = {
 		{
 			"williamboman/mason.nvim",
 			cmd = "Mason",
+			lazy = false,
+			config = true,
 		},
 		"williamboman/mason-lspconfig.nvim",
 		"jose-elias-alvarez/null-ls.nvim",
@@ -44,8 +46,66 @@ return {
 				border = "rounded",
 			},
 		})
+
+		lsp.extend_lspconfig()
+
 		masonlsp.setup({
 			ensure_installed = { "lua_ls", "tsserver", "tailwindcss", "prismals", "html", "cssls" },
+			handlers = {
+				lsp.default_setup,
+				tsserver = function()
+					lspconfig.tsserver.setup({
+						settings = {
+							filetypes = {
+								"typescript",
+								"javascript",
+								"javascriptreact",
+								"typescriptreact",
+								"typescript.tsx",
+								"javascript.jsx",
+							},
+							cmd = { "typescript-language-server", "--stdio" },
+						},
+					})
+				end,
+				lua_ls = function()
+					lspconfig.lua_ls.setup({
+						settings = {
+							Lua = {
+								diagnostics = {
+									globals = { "vim" },
+								},
+								workspace = {
+									library = {
+										[vim.fn.expand("$VIMRUNTIME/lua")] = true,
+										[vim.fn.expand("$VIMRUNTIME/lua/vim/lsp")] = true,
+										[vim.fn.stdpath("data") .. "/lazy/lazy.nvim/lua/lazy"] = true,
+									},
+									maxPreload = 100000,
+									preloadFileSize = 10000,
+								},
+							},
+						},
+					})
+				end,
+				tailwindcss = function()
+					lspconfig.tailwindcss.setup({
+						settings = {
+							tailwindCSS = {
+								experimental = {
+									classRegex = {
+										{ "clsx\\(([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)" },
+										{ "cva\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]" },
+									},
+								},
+							},
+						},
+					})
+				end,
+				rust_analyzer = function()
+					rust_tools.setup({})
+				end,
+			},
 		})
 
 		lspsaga.setup({
@@ -128,45 +188,13 @@ return {
 			info = " ",
 		})
 
-		lsp.skip_server_setup({ "tsserver" })
-		lspconfig.lua_ls.setup({
-			settings = {
-				Lua = {
-					diagnostics = {
-						globals = { "vim" },
-					},
-					workspace = {
-						library = {
-							[vim.fn.expand("$VIMRUNTIME/lua")] = true,
-							[vim.fn.expand("$VIMRUNTIME/lua/vim/lsp")] = true,
-							[vim.fn.stdpath("data") .. "/lazy/lazy.nvim/lua/lazy"] = true,
-						},
-						maxPreload = 100000,
-						preloadFileSize = 10000,
-					},
-				},
-			},
-		})
-		lspconfig.tailwindcss.setup({
-			settings = {
-				tailwindCSS = {
-					experimental = {
-						classRegex = {
-							{ "clsx\\(([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)" },
-							{ "cva\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]" },
-						},
-					},
-				},
-			},
-		})
+		--[[ lsp.skip_server_setup({ "tsserver" }) ]]
 
-		lsp.setup()
-		ts.setup({})
-		rust_tools.setup({})
+		--[[ ts.setup({}) ]]
 
 		null_ls.setup({
 			sources = {
-				require("typescript.extensions.null-ls.code-actions"),
+				--[[ require("typescript.extensions.null-ls.code-actions"), ]]
 				null_ls.builtins.formatting.stylua,
 				null_ls.builtins.formatting.prettierd.with({
 					condition = function(utils)
