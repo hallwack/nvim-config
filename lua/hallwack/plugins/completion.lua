@@ -5,12 +5,12 @@ return {
 		{
 			"L3MON4D3/LuaSnip",
 			"hrsh7th/nvim-cmp",
-			"hrsh7th/cmp-nvim-lsp",
 			"hrsh7th/cmp-nvim-lua",
 			"hrsh7th/cmp-buffer",
 			"hrsh7th/cmp-path",
 			"saadparwaiz1/cmp_luasnip",
 			"rafamadriz/friendly-snippets",
+			"onsails/lspkind.nvim",
 			{
 				"dsznajder/vscode-es7-javascript-react-snippets",
 				build = "yarn install --frozen-lockfile && yarn compile",
@@ -22,12 +22,8 @@ return {
 					disable_filetype = { "TelescopePrompt", "vim" },
 				},
 				config = function()
-					local ok_autopairs, autopairs = pcall(require, "nvim-autopairs")
-					local ok_cmp, cmp = pcall(require, "cmp")
-
-					if not (ok_autopairs and ok_cmp) then
-						return
-					end
+					local autopairs = require("nvim-autopairs")
+					local cmp = require("cmp")
 
 					autopairs.setup({
 						check_ts = true,
@@ -55,15 +51,9 @@ return {
 		},
 	},
 	config = function()
-		local ok_cmp, cmp = pcall(require, "cmp")
-		local ok_lspkind, lspkind = pcall(require, "lspkind")
-		local ok_luasnip, luasnip = pcall(require, "luasnip")
-
-		if not (ok_cmp and ok_lspkind and ok_luasnip) then
-			return
-		end
-
-		local cmp_format = require("lsp-zero").cmp_format()
+		local cmp = require("cmp")
+		local lspkind = require("lspkind")
+		local luasnip = require("luasnip")
 
 		require("luasnip/loaders/from_vscode").lazy_load()
 
@@ -134,7 +124,6 @@ return {
 				{ name = "path" },
 			}),
 			formatting = {
-				cmp_format,
 				format = lspkind.cmp_format({
 					with_text = true,
 					maxwidth = 100,
