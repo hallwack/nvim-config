@@ -6,15 +6,28 @@ return {
   dependencies = {
     "williamboman/mason-lspconfig.nvim",
     {
-      "simrat39/rust-tools.nvim",
-      ft = { "rs" }
+      "mrcjkb/rustaceanvim",
+      version = "3",
+      ft = { "rs" },
+      config = function()
+        vim.g.rustaceanvim = {
+          server = {
+            settings = {
+              ["rust-analyzer"] = {
+                diagnostics = {
+                  disabled = { "unresolved-proc-macro" },
+                },
+              },
+            },
+          },
+        }
+      end,
     },
   },
   config = function()
     local mason = require("mason")
     local masonlsp = require("mason-lspconfig")
     local lspconfig = require("lspconfig")
-    local rust_tools = require("rust-tools")
 
     local default_setup = function(server)
       lspconfig[server].setup({})
@@ -64,10 +77,7 @@ return {
             },
           })
         end,
-        rust_analyzer = function()
-          rust_tools.setup({})
-        end,
-      }
+      },
     })
   end,
 }
