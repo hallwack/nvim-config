@@ -70,16 +70,13 @@ return {
     "Mofiqul/vscode.nvim",
     config = function()
       require("vscode").setup({
-        transparent = true,
       })
       --[[ require("vscode").load() ]]
     end,
   },
   {
-    "tinted-theming/base16-vim",
-    config = function ()
-      vim.cmd("let base16_colorspace=256")
-      vim.g.colors_name = 'base16'
+    "RRethy/nvim-base16",
+    config = function()
       vim.cmd('colorscheme base16-black-metal-bathory')
     end
   }
