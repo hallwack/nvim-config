@@ -27,14 +27,6 @@ return {
 			split = {
 				size = "60%",
 			},
-			environment = {
-				resolver = require("laravel.environment.resolver")(true, true, "docker-compose"),
-				environments = {
-					["local"] = require("laravel.environment.native").setup(),
-					["sail"] = require("laravel.environment.sail").setup(),
-					["docker-compose"] = require("laravel.environment.docker_compose").setup(),
-				},
-			},
 		})
 		telescope.load_extension("laravel")
 	end,
