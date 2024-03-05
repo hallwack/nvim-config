@@ -11,6 +11,10 @@ return {
           prefer_local = "node_modules/.bin",
           --[[ args = { "--trailing-comma", "none" }, ]]
         }),
+        --[[ null_ls.builtins.formatting.prettier.with({ ]]
+        --[[   prefer_local = "node_modules/.bin", ]]
+        --[[   args = { "--trailing-comma", "none" }, ]]
+        --[[ }), ]]
         --[[ null_ls.builtins.formatting.biome, ]]
         --[[ null_ls.builtins.diagnostics.eslint_d.with({
 					prefer_local = "node_modules/.bin",
