@@ -52,8 +52,6 @@ return {
 				"jsonls",
         "quick_lint_js",
         "intelephense",
-        "stylua",
-
 			},
 			handlers = {
 				default_setup,
