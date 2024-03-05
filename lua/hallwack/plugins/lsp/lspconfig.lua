@@ -74,7 +74,7 @@ return {
         local opts = { noremap = true, silent = true, buffer = event.buf }
 
         keymap("n", "K", "<cmd>Lspsaga hover_doc<cr>", opts)
-        keymap("n", "gd", "<cmd>lua vim.lsp.buf.definition()<cr>", opts)
+        keymap("n", "gd", "<cmd>lua require('telescope.builtin').lsp_definitions()<cr>", opts)
         keymap("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<cr>", opts)
         keymap("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<cr>", opts)
         keymap("n", "go", "<cmd>lua vim.lsp.buf.type_definition()<cr>", opts)
