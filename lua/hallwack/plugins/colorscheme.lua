@@ -69,15 +69,17 @@ return {
   {
     "Mofiqul/vscode.nvim",
     config = function()
-      require("vscode").setup({
-      })
+      require("vscode").setup({})
       --[[ require("vscode").load() ]]
     end,
   },
   {
     "RRethy/nvim-base16",
     config = function()
-      vim.cmd('colorscheme base16-black-metal-bathory')
-    end
-  }
+      require("base16-colorscheme").with_config({
+        telescope = false,
+      })
+      vim.cmd("colorscheme base16-black-metal-bathory")
+    end,
+  },
 }
