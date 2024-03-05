@@ -85,7 +85,7 @@ return {
         --[[ keymap("n", "[d", "<cmd>lua vim.diagnostic.goto_prev()<cr>", opts) ]]
         --[[ keymap("n", "]d", "<cmd>lua vim.diagnostic.goto_next()<cr>", opts) ]]
 
-        keymap("n", "<leader>fr", "<Cmd>lua vim.lsp.buf.format({ async = true })<CR>", opts)
+        --[[ keymap("n", "<leader>fr", "<Cmd>lua vim.lsp.buf.format({ async = true })<CR>", opts) ]]
         keymap("n", "gh", "<Cmd>Lspsaga finder<CR>", opts)
         keymap("n", "<leader>ca", "<Cmd>Lspsaga code_action<CR>", opts)
         keymap("n", "<leader>rn", "<Cmd>Lspsaga rename<CR>", opts)
