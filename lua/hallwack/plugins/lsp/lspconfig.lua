@@ -71,30 +71,37 @@ return {
       desc = "LSP Actions",
       callback = function(event)
         local keymap = vim.keymap.set
-        local opts = { noremap = true, silent = true, buffer = event.buf }
+        local function default_options(description)
+          return { noremap = true, silent = true, desc = description }
+        end
 
-        keymap("n", "K", "<cmd>Lspsaga hover_doc<cr>", opts)
-        keymap("n", "gd", "<cmd>lua require('telescope.builtin').lsp_definitions()<cr>", opts)
-        keymap("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<cr>", opts)
-        keymap("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<cr>", opts)
-        keymap("n", "go", "<cmd>lua vim.lsp.buf.type_definition()<cr>", opts)
-        keymap("n", "gr", "<cmd>lua require('telescope.builtin').lsp_references()<cr>", opts)
-        keymap("n", "gs", "<cmd>lua vim.lsp.buf.signature_help()<cr>", opts)
+        keymap("n", "K", "<cmd>Lspsaga hover_doc<cr>", default_options("For LSP hover documentation"))
+        keymap("n", "gd", "<cmd>lua require('telescope.builtin').lsp_definitions()<cr>",
+          default_options("For LSP definitions"))
+        keymap("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<cr>", default_options("For LSP declaration"))
+        keymap("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<cr>", default_options("For LSP implementation"))
+        keymap("n", "go", "<cmd>lua vim.lsp.buf.type_definition()<cr>", default_options("For LSP type definition"))
+        keymap("n", "gr", "<cmd>lua require('telescope.builtin').lsp_references()<cr>",
+          default_options("For LSP references"))
+        keymap("n", "gs", "<cmd>lua vim.lsp.buf.signature_help()<cr>", default_options("For LSP signature help"))
 
-        keymap("n", "gl", "<cmd>lua vim.diagnostic.open_float()<cr>", opts)
+        keymap("n", "gl", "<cmd>lua vim.diagnostic.open_float()<cr>", default_options("For LSP diagnostics"))
         --[[ keymap("n", "[d", "<cmd>lua vim.diagnostic.goto_prev()<cr>", opts) ]]
         --[[ keymap("n", "]d", "<cmd>lua vim.diagnostic.goto_next()<cr>", opts) ]]
 
         --[[ keymap("n", "<leader>fr", "<Cmd>lua vim.lsp.buf.format({ async = true })<CR>", opts) ]]
-        keymap("n", "gh", "<Cmd>Lspsaga finder<CR>", opts)
-        keymap("n", "<leader>ca", "<Cmd>Lspsaga code_action<CR>", opts)
-        keymap("n", "<leader>rn", "<Cmd>Lspsaga rename<CR>", opts)
-        keymap("n", "<leader>cd", "<Cmd>Lspsaga show_line_diagnostics<CR>", opts)
-        keymap("n", "<leader>cr", "<Cmd>Lspsaga show_cursor_diagnostics<CR>", opts)
-        keymap("n", "[d", "<cmd>Lspsaga diagnostic_jump_prev<CR>", opts)
-        keymap("n", "]d", "<cmd>Lspsaga diagnostic_jump_next<CR>", opts)
-        keymap("n", "<leader>ol", "<cmd>Lspsaga outline<CR>", opts)
-        keymap("n", "<A-t>", "<cmd>Lspsaga term_toggle<CR>", opts)
+        keymap("n", "gh", "<Cmd>Lspsaga finder<CR>",
+          default_options("For LSP finder (w/ references, implementations, and definitions)"))
+        keymap("n", "<leader>ca", "<Cmd>Lspsaga code_action<CR>", default_options("For LSP code actions"))
+        keymap("n", "<leader>rn", "<Cmd>Lspsaga rename<CR>", default_options("For LSP rename variable"))
+        keymap("n", "<leader>cd", "<Cmd>Lspsaga show_line_diagnostics<CR>",
+          default_options("For LSP show diagnostics (per line)"))
+        keymap("n", "<leader>cr", "<Cmd>Lspsaga show_cursor_diagnostics<CR>",
+          default_options("For LSP show diagnostics (per cursor)"))
+        keymap("n", "[d", "<cmd>Lspsaga diagnostic_jump_prev<CR>", default_options("For LSP show next diagnostics"))
+        keymap("n", "]d", "<cmd>Lspsaga diagnostic_jump_next<CR>", default_options("For LSP show previous diagnostics"))
+        keymap("n", "<leader>ol", "<cmd>Lspsaga outline<CR>", default_options("For LSP show outline"))
+        keymap("n", "<A-t>", "<cmd>Lspsaga term_toggle<CR>", default_options("For showing terminal"))
       end,
     })
   end,
