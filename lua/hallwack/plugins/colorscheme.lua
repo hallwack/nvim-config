@@ -1,5 +1,5 @@
 return {
-  {
+  --[[ {
     "catppuccin/nvim",
     name = "catppuccin",
     priority = 1000,
@@ -7,13 +7,12 @@ return {
       local cat = require("catppuccin")
 
       cat.setup({
-        flavour = "mocha", -- latte, frappe, macchiato, mocha
+        flavour = "mocha",
         background = {
-          -- :h background
           light = "latte",
           dark = "mocha",
         },
-        transparent_background = true, -- disables setting the background color.
+        transparent_background = true,
         term_colors = true,
         no_italic = true,
         integrations = {
@@ -24,18 +23,17 @@ return {
           telescope = true,
           notify = false,
           mini = false,
-          -- For more plugins integrations please scroll down (https://github.com/catppuccin/nvim#integrations)
         },
       })
 
-      --[[ vim.cmd.colorscheme("catppuccin") ]]
+      vim.cmd.colorscheme("catppuccin")
     end,
   },
   {
     "rockyzhang24/arctic.nvim",
     dependencies = { "rktjmp/lush.nvim" },
     config = function()
-      --[[ vim.cmd("colorscheme arctic") ]]
+      vim.cmd("colorscheme arctic")
     end,
   },
   {
@@ -44,7 +42,7 @@ return {
     lazy = false,
     config = function()
       vim.g.nightflyTransparent = true
-      --[[ vim.cmd("colorscheme nightfly") ]]
+      vim.cmd("colorscheme nightfly")
     end,
   },
   {
@@ -53,7 +51,7 @@ return {
     lazy = false,
     config = function()
       vim.g.moonflyTransparent = true
-      --[[ vim.cmd("colorscheme moonfly") ]]
+      vim.cmd("colorscheme moonfly")
     end,
   },
   {
@@ -63,16 +61,16 @@ return {
       require("visual_studio_code").setup({
         transparent = true,
       })
-      --[[ vim.cmd("colorscheme visual_studio_code") ]]
+      vim.cmd("colorscheme visual_studio_code")
     end,
   },
   {
     "Mofiqul/vscode.nvim",
     config = function()
       require("vscode").setup({})
-      --[[ require("vscode").load() ]]
+      require("vscode").load()
     end,
-  },
+  }, ]]
   {
     "RRethy/nvim-base16",
     config = function()
