@@ -23,7 +23,7 @@ return {
 			css = { "prettierd" },
 			html = { "prettierd" },
 			json = { "prettierd" },
-			yaml = { "prettierd" },
+			yaml = { "yamlfmt" },
 			markdown = { "prettierd" },
 			graphql = { "prettierd" },
 		},
