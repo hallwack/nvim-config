@@ -30,6 +30,7 @@ return {
             ts_config = {
               lua = { "string", "source" },
               javascript = { "string", "template_string" },
+              svelte = { "string", "template_string" },
             },
             fast_wrap = {
               map = "<M-e>",
