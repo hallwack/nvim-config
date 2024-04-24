@@ -45,7 +45,7 @@ if vim.g.vscode then
 
     toggleSidebarVisibility = function()
       vscode_neovim.call("workbench.action.toggleSidebarVisibility")
-      vscode_neovim.call("workbench.action.focusSidebar")
+      vscode_neovim.action("workbench.action.focusSidebar")
     end,
 
     toggleCenteredLayout = function()
