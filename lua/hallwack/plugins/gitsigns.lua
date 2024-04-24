@@ -27,7 +27,8 @@ return {
           end
 
           map('n', '<leader>hp', '<cmd>Gitsigns preview_hunk<CR>')
-        end
+        end,
+        current_line_blame = true,
       })
     end,
   },
