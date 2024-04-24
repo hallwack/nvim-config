@@ -168,7 +168,7 @@ return {
 				{
 					type = "group",
 					val = function()
-						return { mru(0, cdir, 9) }
+						return { mru(0, cdir, 5) }
 					end,
 					opts = { shrink_margin = false },
 				},
