@@ -26,6 +26,7 @@ return {
 			yaml = { "yamlfmt" },
 			markdown = { "prettierd" },
 			graphql = { "prettierd" },
+			sql = { "sql-formatter" },
 		},
 
 		-- Customize formatters
