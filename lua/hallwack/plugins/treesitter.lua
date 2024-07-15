@@ -17,6 +17,11 @@ return {
     },
     {
       "nvim-treesitter/nvim-treesitter-context",
+      config = function()
+        require('treesitter-context').setup({
+          mode = 'cursor'
+        })
+      end
     },
   },
   config = function()
@@ -47,10 +52,6 @@ return {
         enable = true,
       },
       indent = { enable = true },
-      autotag = {
-        enable = true,
-        enable_close_on_slash = false,
-      },
     })
   end,
 }
