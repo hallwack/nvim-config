@@ -10,6 +10,17 @@ return {
   dependencies = {
     "hrsh7th/cmp-nvim-lsp",
     { "glepnir/lspsaga.nvim", event = "LspAttach" },
+    {
+      'dmmulroy/ts-error-translator.nvim',
+      config = function()
+        require('ts-error-translator').setup()
+
+        vim.lsp.handlers["textDocument/publishDiagnostics"] = function(err, result, ctx, config)
+          require("ts-error-translator").translate_diagnostics(err, result, ctx, config)
+          vim.lsp.diagnostic.on_publish_diagnostics(err, result, ctx, config)
+        end
+      end
+    }
   },
   config = function()
     local lspconfig = require("lspconfig")
