@@ -80,4 +80,21 @@ return {
       vim.cmd("colorscheme base16-black-metal-bathory")
     end,
   },
+  --[[ {
+    "datsfilipe/vesper.nvim",
+    config = function()
+      require("vesper").setup({
+        transparent = true,
+        italics = {
+          comments = true,  -- Boolean: Italicizes comments
+          keywords = true,  -- Boolean: Italicizes keywords
+          functions = true, -- Boolean: Italicizes functions
+          strings = true,   -- Boolean: Italicizes strings
+          variables = true, -- Boolean: Italicizes variables
+        },
+      })
+
+      vim.cmd("colorscheme vesper")
+    end
+  }, ]]
 }
