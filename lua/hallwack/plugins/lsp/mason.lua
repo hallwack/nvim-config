@@ -89,7 +89,6 @@ return {
                 },
               },
             },
-            root_dir = lspconfig.util.root_pattern({ "tailwind.config.ts", "tailwind.config.js" })
           })
         end,
         ts_ls = function()
