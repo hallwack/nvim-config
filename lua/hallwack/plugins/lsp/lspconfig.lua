@@ -8,7 +8,6 @@ return {
   },
   event = { "BufReadPre", "BufNewFile" },
   dependencies = {
-    "hrsh7th/cmp-nvim-lsp",
     { "glepnir/lspsaga.nvim", event = "LspAttach" },
     {
       'dmmulroy/ts-error-translator.nvim',
@@ -23,13 +22,7 @@ return {
     }
   },
   config = function()
-    local lspconfig = require("lspconfig")
-    local cmp_nvim_lsp = require("cmp_nvim_lsp")
     local lspsaga = require("lspsaga")
-    local lsp_defaults = lspconfig.util.default_config
-
-    lsp_defaults.capabilities =
-        vim.tbl_deep_extend("force", lsp_defaults.capabilities, cmp_nvim_lsp.default_capabilities())
 
     local signs = {
       Error = "✘",
@@ -37,10 +30,18 @@ return {
       Hint = "⚑",
       Info = " ",
     }
-    for type, icon in pairs(signs) do
-      local hl = "DiagnosticSign" .. type
-      vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
-    end
+
+    vim.diagnostic.config({
+      virtual_text = true,
+      signs = {
+        text = {
+          [vim.diagnostic.severity.ERROR] = signs.Error,
+          [vim.diagnostic.severity.WARN] = signs.Warn,
+          [vim.diagnostic.severity.INFO] = signs.Info,
+          [vim.diagnostic.severity.HINT] = signs.Hint,
+        }
+      }
+    })
 
     lspsaga.setup({
       ui = {
@@ -92,8 +93,9 @@ return {
         end
 
         keymap("n", "K", "<cmd>Lspsaga hover_doc<cr>", default_options("For LSP hover documentation"))
-        keymap("n", "gd", "<cmd>lua require('telescope.builtin').lsp_definitions()<cr>",
-          default_options("For LSP definitions"))
+        --[[ keymap("n", "gd", "<cmd>lua require('telescope.builtin').lsp_definitions()<cr>",
+          default_options("For LSP definitions")) ]]
+        keymap("n", "gd", "<Cmd>Lspsaga goto_definition<CR>", default_options("For LSP definitions"))
         keymap("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<cr>", default_options("For LSP declaration"))
         keymap("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<cr>", default_options("For LSP implementation"))
         keymap("n", "go", "<cmd>lua vim.lsp.buf.type_definition()<cr>", default_options("For LSP type definition"))
