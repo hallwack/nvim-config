@@ -71,7 +71,7 @@ return {
       require("vscode").load()
     end,
   }, ]]
-  {
+  --[[ {
     "RRethy/nvim-base16",
     config = function()
       require("base16-colorscheme").with_config({
@@ -79,22 +79,58 @@ return {
       })
       vim.cmd("colorscheme base16-black-metal-bathory")
     end,
-  },
+  }, ]]
   --[[ {
     "datsfilipe/vesper.nvim",
     config = function()
       require("vesper").setup({
         transparent = true,
         italics = {
-          comments = true,  -- Boolean: Italicizes comments
-          keywords = true,  -- Boolean: Italicizes keywords
-          functions = true, -- Boolean: Italicizes functions
-          strings = true,   -- Boolean: Italicizes strings
-          variables = true, -- Boolean: Italicizes variables
+          comments = false,  -- Boolean: Italicizes comments
+          keywords = false,  -- Boolean: Italicizes keywords
+          functions = false, -- Boolean: Italicizes functions
+          strings = false,   -- Boolean: Italicizes strings
+          variables = false, -- Boolean: Italicizes variables
         },
       })
 
       vim.cmd("colorscheme vesper")
     end
   }, ]]
+  --[[ {
+    "bakageddy/alduin.nvim",
+    priority = 1000,
+    config = function()
+      require("alduin").setup({
+        terminal_colors = true, -- add neovim terminal colors
+        inverse = true,
+        palette_overrides = {},
+        overrides = {},
+      })
+
+      vim.cmd("colorscheme alduin")
+    end
+  }, ]]
+  --[[ {
+    "judaew/ronny.nvim",
+    priority = 1000,
+    config = function()
+      vim.cmd.colorscheme("ronny")
+      require("ronny").setup()
+    end
+  }, ]]
+  {
+    'AlexvZyl/nordic.nvim',
+    lazy = false,
+    priority = 1000,
+    config = function()
+      require('nordic').load({
+        transparent = {
+          bg = true,
+          float = true
+        },
+        italic_comments = false,
+      })
+    end
+  },
 }
