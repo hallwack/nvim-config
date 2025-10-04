@@ -16,20 +16,26 @@ return {
       support_paste_from_clipboard = false,
       minimize_diff = true, -- Whether to remove unchanged lines when applying a code block
     },
-    claude = {
-      endpoint = 'https://api.anthropic.com',
-      model = 'claude-3-5-sonnet-20241022',
-      temperature = 0.1, -- kinda creative
-      max_tokens = 4096,
-    },
-    copilot = {
-      endpoint = 'https://api.githubcopilot.com/',
-      model = 'claude-3.5-sonnet',
-      proxy = nil,            -- [protocol://]host[:port] Use this proxy
-      allow_insecure = false, -- Do not allow insecure server connections
-      timeout = 30000,        -- Timeout in milliseconds
-      temperature = 0.1,      -- kinda creative
-      max_tokens = 8192,
+    providers = {
+      claude = {
+        endpoint = 'https://api.anthropic.com',
+        model = 'claude-3-5-sonnet-20241022',
+        extra_request_body = {
+          temperature = 0.1, -- kinda creative
+          max_tokens = 4096,
+        },
+      },
+      copilot = {
+        endpoint = 'https://api.githubcopilot.com/',
+        model = 'claude-3.5-sonnet',
+        proxy = nil,            -- [protocol://]host[:port] Use this proxy
+        allow_insecure = false, -- Do not allow insecure server connections
+        timeout = 30000,        -- Timeout in milliseconds
+        extra_request_body = {
+          temperature = 0.1,      -- kinda creative
+          max_tokens = 8192,
+        },
+      },
     },
   },
   -- if you want to build from source then do `make BUILD_FROM_SOURCE=true`

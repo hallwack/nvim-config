@@ -21,7 +21,8 @@ return
         "nvim-treesitter/nvim-treesitter-context",
         config = function()
           require('treesitter-context').setup({
-            mode = 'cursor'
+            mode = 'cursor',
+            max_lines = 8
           })
         end
       },

@@ -15,6 +15,9 @@ return {
 	opts = {
 		formatters_by_ft = {
 			lua = { "stylua" },
+			sql = { "sql-formatter" },
+			yaml = { "yamlfmt" },
+
 			javascript = { "prettierd" },
 			typescript = { "prettierd" },
 			javascriptreact = { "prettierd" },
@@ -23,10 +26,19 @@ return {
 			css = { "prettierd" },
 			html = { "prettierd" },
 			json = { "prettierd" },
-			yaml = { "yamlfmt" },
 			markdown = { "prettierd" },
 			graphql = { "prettierd" },
-			sql = { "sql-formatter" },
+
+			--[[ javascript = { "prettier" }, ]]
+			--[[ typescript = { "prettier" }, ]]
+			--[[ javascriptreact = { "prettier" }, ]]
+			--[[ typescriptreact = { "prettier" }, ]]
+			--[[ svelte = { "prettier" }, ]]
+			--[[ css = { "prettier" }, ]]
+			--[[ html = { "prettier" }, ]]
+			--[[ json = { "prettier" }, ]]
+			--[[ markdown = { "prettier" }, ]]
+			--[[ graphql = { "prettier" }, ]]
 		},
 
 		-- Customize formatters

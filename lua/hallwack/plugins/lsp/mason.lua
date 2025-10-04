@@ -43,7 +43,7 @@ return {
       ensure_installed = {
         "lua_ls",
         "ts_ls",
-        "denols",
+        --[[ "denols", ]]
         "tailwindcss",
         "prismals",
         "html",
@@ -97,15 +97,16 @@ return {
             root_dir = lspconfig.util.root_pattern({ "package.json" })
           })
         end,
-        denols = function()
+        --[[ denols = function()
           lspconfig.denols.setup({
             single_file_support = false,
             root_dir = lspconfig.util.root_pattern({ "deno.json", "deno.jsonc" })
           })
-        end,
+        end, ]]
         quick_lint_js = function()
           lspconfig.quick_lint_js.setup({
             filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
+            root_dir = lspconfig.util.root_pattern({ "package.json" })
           })
         end
       },
